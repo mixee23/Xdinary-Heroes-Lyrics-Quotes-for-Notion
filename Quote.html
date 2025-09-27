@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Xdinary Heroes Lyric Widget</title>
+    <style>
+        body {
+            font-family: 'EB Garamond', Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .quote-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 40px 60px; /* extra padding for decorative quotes */
+            margin: 50px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .quote-box::before,
+        .quote-box::after {
+            position: absolute;
+            font-size: 90px;
+            color: #aaa;
+            font-family: serif;
+            top: 10px;
+        }
+        .quote-box::before {
+            content: "“";
+            left: 5px;
+        }
+        .quote-box::after {
+            content: "”";
+            right: 5px;
+        }
+        #quote {
+            font-size: 25px;
+            color: #B22222;
+			font-style: italic;
+            line-height: 1.5;
+        }
+        #song {
+            font-size: 18px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+        #author {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #cccccc;
+            margin-top: 15px;
+        }
+        button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 6px;
+            font-size: 14px;
+            border: none;
+            border-radius: 50%;
+            background: #B22222;
+            color: #ffffff;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover {
+            background: #8B0000;
+        }
+        #quote, #song, #author {
+            transition: opacity 0.8s ease-in-out;
+            opacity: 1;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quote-box">
+        <div id="quote"></div>
+        <div id="song"></div>
+        <div id="author"></div>
+        <button onclick="generateRandomQuote()"><i class="fas fa-sync-alt"></i></button>
+    </div>
+
+    <script>
+        const quotes = [
+            { text: "If you seek it, Why owe you?", song: "Freakin' Bad", author: "Xdinary Heroes" },
+            { text: "War is Peace and Freedom's Slavery", song: "Beautiful Life", author: "Xdinary Heroes" },
+            { text: "Please, God, save me, the memories are killing me", song: "Save Me", author: "Xdinary Heroes" },
+            { text: "You're caught in lies that never end", song: "Beautiful Life", author: "Xdinary Heroes" },
+            { text: "No one's here to find you", song: "Beautiful Life", author: "Xdinary Heroes" },
+            { text: "Why don't you wave your flag, Oh is it white?", song: "Beautiful Life", author: "Xdinary Heroes" },
+            { text: "I hope they choke on words that broke me", song: "iNSTEAD!", author: "Xdinary Heroes" },
+            { text: "Empty promises and lies are made with deeper cuts", song: "iNSTEAD!", author: "Xdinary Heroes" },
+            { text: "What if I am wrong, and I got everything wrong? Then what? Then what?", song: "Night before the end", author: "Xdinary Heroes" },
+            { text: "The night before falling out of what we thought love is", song: "Night before the end", author: "Xdinary Heroes" },
+            { text: "It's the time. The last hour of love", song: "Night before the end", author: "Xdinary Heroes" },
+            { text: "Strawberry cake, sweet 함은 fake 네 말은 날 slowly 썩혀 날 badly", song: "Strawberry Cake", author: "Xdinary Heroes" },
+            { text: "Oh, you locked me up inside your doll. ’Cause you make me wanna scream it more.", song: "Fire (My sweet misery)", author: "Xdinary Heroes" },
+            { text: "Bite my tongue INSTEAD", song: "iNSTEAD!", author: "Xdinary Heroes" },
+            { text: "That feeling, something breathing under my bеd. Something breathing next to my head instead", song: "iNSTEAD!", author: "Xdinary Heroes" },
+            { text: "Yeah, teach me how your love is done. And I'll gladly burn to love you", song: "Fire (My sweet misery)", author: "Xdinary Heroes" },
+            { text: "Turned me into psycho, a little loco. Some kinda sicko, I could see that. You’ve been losing all your patience, you little demon", song: "Fire (My sweet misery)", author: "Xdinary Heroes" },
+            { text: "We are on the way to loco. Cut me through~", song: "Fire (My sweet misery)", author: "Xdinary Heroes" },
+        ];
+
+        const quoteElement = document.getElementById('quote');
+        const authorElement = document.getElementById('author');
+
+        function generateRandomQuote() {
+            const quoteElement = document.getElementById('quote');
+            const songElement = document.getElementById('song');
+            const authorElement = document.getElementById('author');
+
+            quoteElement.classList.add('fade-out');
+            songElement.classList.add('fade-out');
+            authorElement.classList.add('fade-out');
+
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const randomQuote = quotes[randomIndex];
+
+                quoteElement.innerHTML = randomQuote.text;
+                songElement.textContent = randomQuote.song;
+                authorElement.textContent = "- " + randomQuote.author.toUpperCase();
+
+                quoteElement.classList.remove('fade-out');
+                songElement.classList.remove('fade-out');
+                authorElement.classList.remove('fade-out');
+            }, 800);
+        }
+
+        // Initial lyric
+        generateRandomQuote();
+
+        // Auto-change lyric every 2 minutes
+        setInterval(generateRandomQuote, 120000);
+    </script>
+
+</body>
+</html>
